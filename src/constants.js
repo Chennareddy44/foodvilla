@@ -1,33 +1,5 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const Title = () => {
-  return (
-    <a href="/">
-      <img
-        className="logo"
-        alt="food villa logo"
-        src="https://scontent.fblr11-1.fna.fbcdn.net/v/t39.30808-6/312172365_450040753890916_274818615961815256_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=783fdb&_nc_ohc=OdPrBYPb4IsAX_T2LuI&_nc_ht=scontent.fblr11-1.fna&oh=00_AfCl3j0vG691PDB-iA67P-oF7ay2Ud3TMeuTZRHZsOa7Fg&oe=65C446C2"
-      />
-    </a>
-  );
-};
-
-const Header = () => {
-  return (
-    <div className="header">
-      <Title />
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
+export const IMG_CDN_URL =
+  "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
 
 export const restaurantList = [
   {
@@ -760,43 +732,3 @@ export const restaurantList = [
     subtype: "basic",
   },
 ];
-
-export const IMG_CDN_URL =
-  "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
-
-const RestaurantCard = ({ cloudinaryImageId, name, cuisines, avgRating }) => {
-  return (
-    <div className="restaurant-card">
-      <img src={IMG_CDN_URL + cloudinaryImageId} alt="restaurant logo" />
-      <h2>{name}</h2>
-      <h3>{cuisines.join(", ")}</h3>
-      <h4>{avgRating} stars</h4>
-    </div>
-  );
-};
-
-const Body = () => {
-  return (
-    <div className="restaurant-list">
-      {restaurantList.map((restaurant) => {
-        return <RestaurantCard {...restaurant.data} key={restaurant.data.id} />;
-      })}
-    </div>
-  );
-};
-
-const Footer = () => {
-  return <h4>Footer</h4>;
-};
-
-const AppLayout = () => {
-  return (
-    <>
-      <Header />
-      <Body />
-      <Footer />
-    </>
-  );
-};
-
-ReactDOM.createRoot(document.getElementById("root")).render(<AppLayout />);
