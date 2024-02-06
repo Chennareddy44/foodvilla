@@ -1,8 +1,13 @@
+body {
+  background-color: black;
+  color: white;
+}
 .header {
   display: flex;
   justify-content: space-between;
   margin: 10px;
-  border: 1px solid black;
+  border: 1px solid white;
+  /* border: 1px solid black; */
 }
 
 .nav-items > ul {
@@ -21,7 +26,8 @@
 
 .restaurant-card {
   max-width: 200px;
-  border: 1px solid black;
+  border: 1px solid white;
+  /* border: 1px solid black; */
   margin: 10px;
   padding: 10px;
 }
@@ -33,4 +39,16 @@
 .restaurant-list {
   display: flex;
   flex-wrap: wrap;
+}
+
+.log-button {
+  cursor: pointer;
+}
+
+.shimmer-card {
+  width: 200px;
+  height: 300px;
+  background: lightgrey;
+  margin: 20px;
+  margin-top: 40px;
 }
