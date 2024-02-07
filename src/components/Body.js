@@ -1,37 +1,20 @@
 import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-
-function searchRestaurants(searchText, restaurants) {
-  return restaurants.filter((restaurant) =>
-    restaurant.info.name.toLowerCase().includes(searchText.toLowerCase())
-  );
-}
+import { searchRestaurants } from "../utils/helper";
+import useRestaurants from "../utils/useRestaurants";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
-  const [allRestaurants, setAllRestaurants] = useState([]);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const { allRestaurants, filteredRestaurants, setFilteredRestaurants } =
+    useRestaurants();
 
-  useEffect(() => {
-    getData();
-  }, []);
+  const isOnline = useOnline();
 
-  async function getData() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-    );
-
-    const json = await data.json();
-
-    setAllRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurants(
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-  }
+  if (!isOnline)
+    return <h1>🔴 offline, please check your internet connection!!</h1>;
 
   if (!allRestaurants) return null;
 
@@ -51,7 +34,7 @@ const Body = () => {
           className="search-btn"
           onClick={() =>
             setFilteredRestaurants(
-              searchRestaurants(searchText, filteredRestaurants)
+              searchRestaurants(searchText, allRestaurants)
             )
           }
         >
