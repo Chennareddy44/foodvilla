@@ -22,16 +22,16 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="search-container">
+      <div className="p-5">
         <input
-          className="search-input"
+          className="shadow-xl bg-blue-100 rounded-xl p-2 my-2 placeholder-black focus:outline-none placeholder:text-base"
           type="text"
-          placeholder="Search Your Favourite Restaurant"
+          placeholder="Search Restaurant"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
-          className="search-btn"
+          className="bg-blue-100 shadow-xl p-2 m-2 rounded-xl font-semiboldbold text-base"
           onClick={() =>
             setFilteredRestaurants(
               searchRestaurants(searchText, allRestaurants)
@@ -40,22 +40,26 @@ const Body = () => {
         >
           search
         </button>
-      </div>
-      <button
-        onClick={() => {
-          setFilteredRestaurants(
-            filteredRestaurants.filter(
-              (restaurant) => restaurant.info.avgRating > 4.2
-            )
-          );
-        }}
-      >
-        Top Rated Restaurants
-      </button>
 
-      <div className="restaurant-list">
+        <button
+          className="bg-blue-100 shadow-xl p-2 rounded-xl font-semiboldbold text-base"
+          onClick={() => {
+            setFilteredRestaurants(
+              filteredRestaurants.filter(
+                (restaurant) => restaurant.info.avgRating > 4.2
+              )
+            );
+          }}
+        >
+          Top Rated Restaurants
+        </button>
+      </div>
+
+      <div className="flex flex-wrap justify-evenly">
         {filteredRestaurants.length === 0 ? (
-          <h1>No Restaurant match your Filter!!</h1>
+          <h1 className="font-bold text-4xl">
+            No Restaurant match your Filter!!
+          </h1>
         ) : (
           filteredRestaurants.map((restaurant) => {
             return (

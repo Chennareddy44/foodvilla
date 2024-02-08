@@ -24,21 +24,24 @@ const RestaurantMenu = () => {
       ?.card?.card || [];
 
   return (
-    <div className="menu">
+    <div className="flex justify-evenly">
       <div>
-        <h1>Restraunt id: {resId}</h1>
-        <h2>{name}</h2>
-        <img src={IMG_CDN_URL + cloudinaryImageId} />
-        <h3>{city}</h3>
-        <h3>{areaName}</h3>
-        <h3>{avgRating} stars</h3>
-        <h3>{costForTwoMessage}</h3>
+        <h1 className="font-bold my-2 text-xl">Restraunt id: {resId}</h1>
+        <h2 className="font-bold my-2 text-xl">{name}</h2>
+        <img
+          className="w-96 rounded-lg"
+          src={IMG_CDN_URL + cloudinaryImageId}
+        />
+        <h3 className="font-bold my-2 text-xl">{city}</h3>
+        <h3 className="font-bold my-2 text-xl">{areaName}</h3>
+        <h3 className="font-bold my-2 text-xl">{avgRating} stars</h3>
+        <h3 className="font-bold my-2 text-xl">{costForTwoMessage}</h3>
       </div>
       <div>
-        <h1>Menu</h1>
+        <h1 className="font-bold my-2">Menu</h1>
         <ul>
           {itemCards.map((item) => (
-            <li key={item.id}>
+            <li className="font-semibold" key={item.id}>
               {item.card.info.name} - {"rs"} {item.card.info.price / 100}
             </li>
           ))}
