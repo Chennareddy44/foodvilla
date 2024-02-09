@@ -6,18 +6,20 @@ import Footer from "./components/Footer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import About from "./components/About";
 import Error from "./components/Error";
-import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
+import { Provider } from "react-redux";
+import store from "./utils/store";
+import Cart from "./components/Cart";
 
-const Cart = lazy(() => import("./components/Cart"));
+const Contact = lazy(() => import("./components/Contact"));
 
 const AppLayout = () => {
   return (
-    <>
+    <Provider store={store}>
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </Provider>
   );
 };
 
@@ -37,19 +39,17 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: (
+          <Suspense
+            fallback={<h1>Dana Wants that PPV Money..!! Contact him</h1>}
+          >
+            <Contact />
+          </Suspense>
+        ),
       },
       {
         path: "/cart",
-        element: (
-          <Suspense
-            fallback={
-              <h1>Dana Wants that PPV Money..!! Add more to the Cart</h1>
-            }
-          >
-            <Cart />
-          </Suspense>
-        ),
+        element: <Cart />,
       },
       {
         path: "/restaurant/:resId",
