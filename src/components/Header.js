@@ -7,7 +7,12 @@ import { useSelector } from "react-redux";
 const Title = () => {
   return (
     <a href="/">
-      <img className="h-28 p-2" alt="food villa logo" src={Logo} />
+      <img
+        data-testid="logo"
+        className="h-28 p-2"
+        alt="food villa logo"
+        src={Logo}
+      />
     </a>
   );
 };
@@ -22,21 +27,25 @@ const Header = () => {
       <Title />
       <div className="nav-items">
         <ul className="flex py-10">
-          <li className="px-2">
-            <Link to="/">Home</Link>
-          </li>
-          <li className="px-2">
-            <Link to="/about">About</Link>
-          </li>
-          <li className="px-2">
-            <Link to="/Contact">Contact</Link>
-          </li>
-          <li className="px-2">
-            <Link to="/cart">Cart - {cartItems.length} Items</Link>
-          </li>
+          <Link to="/">
+            <li className="px-2">Home</li>
+          </Link>
+          <Link to="/about">
+            <li className="px-2">About</li>
+          </Link>
+          <Link to="/Contact">
+            <li className="px-2">Contact</li>
+          </Link>
+          <Link to="/cart">
+            <li className="px-2" data-testid="cart">
+              Cart - {cartItems.length} Items
+            </li>
+          </Link>
         </ul>
       </div>
-      <h1 className="py-10">{isOnline ? "✅" : "🔴"}</h1>
+      <h1 data-testid="online-status" className="py-10">
+        {isOnline ? "✅" : "🔴"}
+      </h1>
       {isLoggedIn ? (
         <button
           className="bg-blue-200 h-8 my-10 font-bold px-4 mx-2 rounded-2xl"

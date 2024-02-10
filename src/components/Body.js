@@ -22,7 +22,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="p-5">
+      <div data-testid="search-input" className="p-5">
         <input
           className="shadow-xl bg-blue-100 rounded-xl p-2 my-2 placeholder-black focus:outline-none placeholder:text-base"
           type="text"
@@ -31,6 +31,7 @@ const Body = () => {
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
+          data-testid="search-btn"
           className="bg-blue-100 shadow-xl p-2 m-2 rounded-xl font-semiboldbold text-base"
           onClick={() =>
             setFilteredRestaurants(
@@ -55,7 +56,10 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="flex flex-wrap justify-evenly">
+      <div
+        data-testid="restaurant-list"
+        className="flex flex-wrap justify-evenly"
+      >
         {filteredRestaurants.length === 0 ? (
           <h1 className="font-bold text-4xl">
             No Restaurant match your Filter!!
